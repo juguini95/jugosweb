@@ -1,0 +1,41 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<div class="container">
+<h1>{{ question.question_text }}</h1>
+<!--
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+
+</ul>
+-->
+{% for choice in question.choice_set.all %}
+<span class="label label-info">{{choice.choice_text}} : {{choice.votes}}</span>
+{% endfor %}
+
+{% for choice in question.choice_set.all %}
+<p id="{{choice.votes}}"> {{choice.choice_text}}</p>
+<div class="progress">
+        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{choice.votes}}%" >
+          <span class="sr-only">40% Complete (success)</span>
+        </div>
+      </div>
+
+      <script>
+      
+      </script>
+
+      {% endfor %}
+
+<a href="{% url 'polls:detail' question.id %}">¿Votar de nuevo?</a>
+
+</div>

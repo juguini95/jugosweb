@@ -1,0 +1,24 @@
+li a {
+    color: wheat; 
+}
+
+body {
+    background: white url("images/background.gif");
+   
+    background-size: 100%;
+}
+
+.preguntas{
+    font-size: 30px;
+}
+
+#contenedor{
+
+    padding-top: 70px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.liQuest{
+    padding-top: 30px;
+}

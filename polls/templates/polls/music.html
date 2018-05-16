@@ -1,0 +1,59 @@
+{% load static %}
+
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<div class="container" style="padding-top:70px;">
+
+ <img src="{% static 'docs/logo-VisualMusic.png' %}" style="width:70px; float:left;" >
+<h1 style="padding-left:6px;"> Canciones</h1>
+
+<div style="height:35px;"></div>
+
+{% if latest_music_list %}
+  
+#
+
+    <table class="table table-condensed">
+       {% for mani in latest_music_list %}   
+     <tr>
+         <td>{{mani.description}}</td>
+         <td>
+                <audio controls>
+                        {% load static %}
+                         <!--  PARA BUSCAR LOS ARCHIVOS EN LA RUTA> -->
+                           <source src="{% static '/docs/' %}{{ mani.document.name|slice:"18:" }}"> 
+                      </audio>
+         </td>
+     </tr>
+     {% endfor %}
+    </table>
+
+
+
+
+
+    <a href="{% url 'polls:music'  %}" class="btn btn-success">Sube tu canción</a>
+
+    <a href="{% url 'polls:index' %}" class="btn btn-danger">Ir al menu principal
+            <i class="glyphicon glyphicon-arrow-left"></i>
+        </a>
+
+</div>
+
+
+
+    
+
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

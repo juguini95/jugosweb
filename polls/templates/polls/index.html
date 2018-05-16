@@ -1,0 +1,56 @@
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<div class="container">
+        <h2 style="color:wheat;">Bienvenido, en este sitio web encontraras opiniones de diferentes músicos con respecto al tema. Además podrás subir tus canciones y compartirlas con la comunidad.</h2>
+</div>
+
+<div class="container" style="padding-top:30px;">
+        <a href="{% url 'polls:music'  %}" class="btn btn-primary">Comparte tu música 
+            <i class="glyphicon glyphicon-level-up"></i>
+        </a>
+</div>
+
+<div class="container" style="padding-top:30px;">
+        <a href="{% url 'polls:musicToHear'  %}" class="btn btn-danger" >Accede a la música 
+            <i class="glyphicon glyphicon-music"></i>
+        </a>
+</div>
+
+
+
+
+<div class="container" id="contenedor">
+    <h3 style="color:wheat;">Preguntas</h3>
+{% if latest_question_list %}
+  
+<ul >
+    {% for question in latest_question_list %}
+      <!-- eliminado ya que al usar el path() en urls.py de polls ,
+        es posible modificar a la versionactual del uso asi sin harcodear
+            <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li> -->
+            <li class=" liQuest"><a class="preguntas" href="{% url 'polls:detail' question.id %}">
+                {{ question.question_text}}
+            </a></li>
+            <!--otra actualizacion, al agregar el namespace en
+            urls.py, ahora debemos especificarlo acá poniendo
+                      polls:detail -->
+    {% endfor %}
+    </ul>
+
+
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+</div>
